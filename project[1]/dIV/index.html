@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Royal Taste - Fine dining restaurant offering exquisite cuisine and exceptional service. Book your table today for an unforgettable culinary experience.">
+    <meta name="keywords" content="restaurant, fine dining, cuisine, food, booking, reservation">
+    <meta name="author" content="Royal Taste Restaurant">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Royal Taste - Fine Dining Restaurant">
+    <meta property="og:description" content="Experience exquisite cuisine and exceptional service at Royal Taste">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://royaltaste.com">
+
+    <title>Royal Taste - Fine Dining Restaurant</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <style>
+        /* CSS Custom Properties */
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #1a1a1a;
+            --accent-color: #2c2c2c;
+            --text-light: #f5f5f5;
+            --text-dark: #333;
+            --background-dark: #0d0d0d;
+            --gradient-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.3);
+            --transition-fast: 0.3s ease;
+            --transition-medium: 0.5s ease;
+            --transition-slow: 0.8s ease;
+            --border-radius: 8px;
+            --max-width: 1200px;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--background-dark);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Playfair Display", serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        h4 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity var(--transition-medium), visibility var(--transition-medium);
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .utensils-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .fork,
+        .knife {
+            width: 4px;
+            height: 60px;
+            background: var(--primary-color);
+            position: relative;
+            animation: utensils-bounce 1.5s ease-in-out infinite alternate;
+        }
+
+        .fork::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -8px;
+            width: 20px;
+            height: 15px;
+            border-top: 3px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .knife::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -6px;
+            width: 16px;
+            height: 20px;
+            background: var(--primary-color);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .knife {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes utensils-bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 2rem auto 0;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 2px;
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 70%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all var(--transition-fast);
+            padding: 1rem 0;
+        }
+
+        .header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(13, 13, 13, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .navbar {
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width var(--transition-fast);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            transition: all var(--transition-fast);
+            border-radius: 2px;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://wallpapercave.com/wp/wp1874184.jpg") center / cover no-repeat;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-overlay);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+
+        .hero-title {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #ddd;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: var(--background-dark);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background: #c19b26;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Ripple Effect */
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-effect::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple-effect:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            width: 2px;
+            height: 30px;
+            background: var(--primary-color);
+            position: relative;
+        }
+
+        .scroll-arrow::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .animate-fade-up:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .animate-fade-up:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll[data-animation="fade-left"] {
+            transform: translateX(-50px);
+        }
+
+        .animate-on-scroll[data-animation="fade-right"] {
+            transform: translateX(50px);
+        }
+
+        .animate-on-scroll[data-animation="fade-left"].animate,
+        .animate-on-scroll[data-animation="fade-right"].animate {
+            transform: translateX(0);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--secondary-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding-right: 2rem;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--accent-color);
+            border-radius: var(--border-radius);
+            transition: transform var(--transition-fast);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: "Playfair Display", serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--background-dark);
+        }
+
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--accent-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--background-dark);
+            border-color: var(--primary-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: var(--accent-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all var(--transition-fast);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .menu-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .menu-item-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+
+        .menu-item-title {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .menu-item-description {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: "Playfair Display", serif;
+        }
+
+        /* Specials Section */
+        .specials {
+            background: var(--secondary-color);
+        }
+
+        .specials-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform var(--transition-medium);
+        }
+
+        .special-card {
+            min-width: 100%;
+            background: var(--accent-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .special-image {
+            flex: 1;
+            height: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .special-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .special-content {
+            flex: 1;
+            padding-left: 1rem;
+        }
+
+        .special-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .special-content p {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .special-rating {
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .special-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: "Playfair Display", serif;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.9);
+            color: var(--background-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 2;
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: -25px;
+        }
+
+        .next-btn {
+            right: -25px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--background-dark);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            aspect-ratio: 4 / 3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-fast);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary-color);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.8);
+            color: var(--background-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .lightbox-nav:hover {
+            background: var(--primary-color);
+        }
+
+        .lightbox-nav.prev {
+            left: -70px;
+        }
+
+        .lightbox-nav.next {
+            right: -70px;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: var(--secondary-color);
+        }
+
+        .reviews-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            height: 300px;
+        }
+
+        .review-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all var(--transition-medium);
+        }
+
+        .review-card.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .review-content {
+            background: var(--accent-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .review-stars {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ddd;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .author-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+
+        .author-info span {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .review-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .indicator.active {
+            background: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--background-dark);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .form {
+            background: var(--accent-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--background-dark);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-top: 12px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--background-dark);
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #c19b26;
+            transform: translateY(-2px);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-success h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--accent-color);
+            border-radius: var(--border-radius);
+            transition: transform var(--transition-fast);
+        }
+
+        .info-item:hover {
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+        }
+
+        .info-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-content p {
+            color: #ccc;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--accent-color);
+            border-radius: var(--border-radius);
+        }
+
+        .newsletter h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            background: var(--background-dark);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            transition: border-color var(--transition-fast);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .newsletter-btn {
+            background: var(--primary-color);
+            color: var(--background-dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            background: #c19b26;
+        }
+
+        .newsletter-success {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .newsletter-success.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Map Container */
+        .map-container {
+            margin-top: 3rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .map-container iframe {
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter var(--transition-fast);
+        }
+
+        .map-container:hover iframe {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-color);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--accent-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--accent-color);
+            color: #aaa;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--background-dark);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-fast);
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: #c19b26;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-text {
+                padding-right: 0;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .special-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .special-image {
+                height: 250px;
+            }
+
+            .carousel-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(13, 13, 13, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: var(--shadow-medium);
+                padding: 2rem 0;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-padding {
+                padding: 3rem 0;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .lightbox-nav {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .menu-item {
+                margin-bottom: 1rem;
+            }
+
+            .form {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                padding: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .header,
+            .scroll-to-top,
+            .preloader {
+                display: none;
+            }
+
+            .hero {
+                height: auto;
+                padding: 2rem 0;
+            }
+
+            .section-padding {
+                padding: 1rem 0;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>Royal Taste</h1>
+                </div>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#menu" class="nav-link">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#specials" class="nav-link">Specials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gallery" class="nav-link">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reviews" class="nav-link">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-up">Welcome to Royal Taste</h1>
+            <p class="hero-subtitle animate-fade-up">Experience culinary excellence in an atmosphere of refined elegance
+            </p>
+            <button class="cta-button ripple-effect animate-fade-up" onclick="scrollToSection('contact')">
+                Book a Table
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text animate-on-scroll" data-animation="fade-left">
+                    <h2 class="section-title">Our Story</h2>
+                    <p class="about-description">
+                        For over two decades, Royal Taste has been synonymous with culinary excellence and impeccable
+                        service.
+                        Our passion for creating extraordinary dining experiences drives everything we do.
+                    </p>
+                    <p class="about-description">
+                        Led by our award-winning chef, we combine traditional techniques with innovative flavors to
+                        create
+                        dishes that delight the senses and create lasting memories.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="25">0</span>
+                            <span class="stat-label">Years of Excellence</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="50000">0</span>
+                            <span class="stat-label">Happy Customers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="15">0</span>
+                            <span class="stat-label">Awards Won</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image animate-on-scroll" data-animation="fade-right">
+                    <img src="https://media.indebuurt.nl/arnhem/2019/05/17142548/royal-taste.png"
+                        alt="Executive Chef preparing signature dish" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu section-padding">
+        <div class="container">
+            <h2 class="section-title text-center animate-on-scroll">Our Menu</h2>
+            <p class="section-subtitle text-center animate-on-scroll">Discover our carefully crafted culinary creations
+            </p>
+
+            <div class="menu-filters animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="starters">Starters</button>
+                <button class="filter-btn" data-filter="mains">Main Courses</button>
+                <button class="filter-btn" data-filter="desserts">Desserts</button>
+                <button class="filter-btn" data-filter="beverages">Beverages</button>
+            </div>
+
+            <div class="menu-grid" id="menu-grid">
+                <!-- Starters -->
+                <div class="menu-item" data-category="starters">
+                    <div class="menu-item-image">
+                        <img src="https://th.bing.com/th/id/OIP.GcnCKfGo9TDnNlKUokPw9wHaE8?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                            alt="Truffle Arancini" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Truffle Arancini</h3>
+                        <p class="menu-item-description">Crispy risotto balls filled with truffle and parmesan</p>
+                        <span class="menu-item-price">$18</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="starters">
+                    <div class="menu-item-image">
+                        <img src="https://th.bing.com/th/id/OIP.3UDluErmTc5ZTbIhl8YMcQHaE7?r=0&o=7rm=3&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                            alt="Seared Scallops" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Seared Scallops</h3>
+                        <p class="menu-item-description">Pan-seared scallops with cauliflower purée and pancetta</p>
+                        <span class="menu-item-price">$24</span>
+                    </div>
+                </div>
+
+                <!-- Main Courses -->
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://cdn.shopify.com/s/files/1/0012/4328/3505/products/Shot_3_ad886529-dbae-48e3-a40e-41f72909397a_800x.png?v=1576877715"
+                            alt="Wagyu Beef Tenderloin" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Wagyu Beef Tenderloin</h3>
+                        <p class="menu-item-description">Premium wagyu with roasted vegetables and red wine jus</p>
+                        <span class="menu-item-price">$65</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="mains">
+                    <div class="menu-item-image">
+                        <img src="https://th.bing.com/th/id/OIP.WZleqUSkvGsxq18LLOTFaAHaE7?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                            alt="Lobster Thermidor" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Lobster Thermidor</h3>
+                        <p class="menu-item-description">Fresh lobster in creamy cognac sauce with herbs</p>
+                        <span class="menu-item-price">$48</span>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://th.bing.com/th/id/OIP.BJoY70UhJrJGTSr5wzz3oAHaEK?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                            alt="Chocolate Soufflé" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Chocolate Soufflé</h3>
+                        <p class="menu-item-description">Warm chocolate soufflé with vanilla ice cream</p>
+                        <span class="menu-item-price">$16</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://th.bing.com/th/id/R.d577397055559c863a6feac00aa1aa79?rik=6T5NLFphiSh7Zg&riu=http%3a%2f%2fimg.food.com%2ffood%2fCreme-Brulee%2b1.JPG&ehk=RrUDieygMwoLvuCUI2fGWF5jB8hjzlCm1v2fywOzRxA%3d&risl=1&pid=ImgRaw&r=0"
+                            alt="Crème Brûlée" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Crème Brûlée</h3>
+                        <p class="menu-item-description">Classic vanilla custard with caramelized sugar</p>
+                        <span class="menu-item-price">$14</span>
+                    </div>
+                </div>
+
+                <!-- Beverages -->
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">
+                        <img src="https://th.bing.com/th/id/OIP.e7H_3dHUv5-hfdcCeQcvgAHaEo?r=0&o=7rm=3&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                            alt="Vintage Wine Selection" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Vintage Wine Selection</h3>
+                        <p class="menu-item-description">Curated selection of premium wines from around the world</p>
+                        <span class="menu-item-price">$25-$200</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="beverages">
+                    <div class="menu-item-image">
+                        <img src="https://cdn.tatlerasia.com/asiatatler/i/hk/2021/05/07130355-rwhkg-darkside-approaching-asian-dream-blood-and-sweet-a-800-days-journey-1_cover_1800x1200.jpg"
+                            alt="Craft Cocktails" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Signature Cocktails</h3>
+                        <p class="menu-item-description">Handcrafted cocktails with premium spirits and fresh
+                            ingredients</p>
+                        <span class="menu-item-price">$15-$22</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef's Specials -->
+    <section id="specials" class="specials section-padding">
+        <div class="container">
+            <h2 class="section-title text-center animate-on-scroll">Chef's Specials</h2>
+            <p class="section-subtitle text-center animate-on-scroll">Today's featured creations</p>
+
+            <div class="specials-carousel" id="specials-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-track">
+                        <div class="special-card">
+                            <div class="special-image">
+                                <img src="https://th.bing.com/th/id/OIP.dV-k5066xw1aUx1rVWY4KgHaE8?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                                    alt="Pan-Seared Duck Breast" loading="lazy">
+                            </div>
+                            <div class="special-content">
+                                <h3>Pan-Seared Duck Breast</h3>
+                                <p>Served with cherry gastrique and roasted root vegetables</p>
+                                <div class="special-rating">
+                                    <span class="stars">★★★★★</span>
+                                </div>
+                                <span class="special-price">$42</span>
+                            </div>
+                        </div>
+
+                        <div class="special-card">
+                            <div class="special-image">
+                                <img src="https://images.eatsmarter.com/sites/default/files/styles/max_size/public/seafood-risotto-477027.jpg"
+                                    alt="Seafood Risotto" loading="lazy">
+                            </div>
+                            <div class="special-content">
+                                <h3>Seafood Risotto</h3>
+                                <p>Creamy arborio rice with fresh seafood and saffron</p>
+                                <div class="special-rating">
+                                    <span class="stars">★★★★★</span>
+                                </div>
+                                <span class="special-price">$38</span>
+                            </div>
+                        </div>
+
+                        <div class="special-card">
+                            <div class="special-image">
+                                <img src="https://th.bing.com/th/id/OIP.YNiErlVwAriXvVn3HxE_jwHaE3?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                                    alt="Lamb Wellington" loading="lazy">
+                            </div>
+                            <div class="special-content">
+                                <h3>Lamb Wellington</h3>
+                                <p>Herb-crusted lamb wrapped in puff pastry with mint jus</p>
+                                <div class="special-rating">
+                                    <span class="stars">★★★★★</span>
+                                </div>
+                                <span class="special-price">$55</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn prev-btn" id="prev-btn">‹</button>
+                <button class="carousel-btn next-btn" id="next-btn">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery section-padding">
+        <div class="container">
+            <h2 class="section-title text-center animate-on-scroll">Gallery</h2>
+            <p class="section-subtitle text-center animate-on-scroll">A glimpse into our culinary world</p>
+
+            <div class="gallery-grid" id="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://www.originalfishcompany.com/uploads/7/4/0/7/74070901/origfishco-20160613-50-daa_1_orig.jpg"
+                        alt="Restaurant Interior" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://novainteriors.co.uk/wp-content/uploads/2016/12/Lanes-of-London-3.jpg"
+                        alt="Signature Dish" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://th.bing.com/th/id/OIP.4gDvoYBMEuzRyifr-8KUzAHaE7?r=0&w=644&h=429&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                        alt="Wine Cellar" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://www.hotelscombined.com/rimg/himg/a0/10/01/revato-234771-12092971-239670.jpg?width=960&height=540&crop=true"
+                        alt="Chef at Work" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/1c61c224307519.56332671810c0.jpg"
+                        alt="Dining Experience" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="https://th.bing.com/th/id/OIP.Fa90vmAVsugh5brJ2iefpAHaE7?r=0&w=1538&h=1024&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                        alt="Dessert Presentation" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-image" src="/placeholder.svg" alt="">
+            <button class="lightbox-nav prev" id="lightbox-prev">‹</button>
+            <button class="lightbox-nav next" id="lightbox-next">›</button>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews section-padding">
+        <div class="container">
+            <h2 class="section-title text-center animate-on-scroll">What Our Guests Say</h2>
+            <p class="section-subtitle text-center animate-on-scroll">Testimonials from our valued customers</p>
+
+            <div class="reviews-slider" id="reviews-slider">
+                <div class="review-card active">
+                    <div class="review-content">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"An absolutely incredible dining experience. The attention to detail and
+                            quality of food exceeded all expectations. Will definitely be returning!"</p>
+                        <div class="review-author">
+                            <img src="https://assets.skool.com/f/878305e58d0c4756a5a2212cab5afac6/3c6d22773293413ca91bd95f9b601b7a7e3f65350ec0481fb7b644608d9c6b13-md.jpg"
+                                alt="Sarah Johnson" class="author-avatar">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>Food Critic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-content">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Royal Taste delivers on every front - exceptional cuisine, impeccable
+                            service, and an atmosphere that makes every meal feel special."</p>
+                        <div class="review-author">
+                            <img src="https://th.bing.com/th/id/OIP.d4rVGtk6XvL4yDRxr6YuQQHaJQ?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3"
+                                alt="Michael Chen" class="author-avatar">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Regular Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-content">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"From the moment we walked in, we were treated like royalty. The chef's
+                            special was a masterpiece, and the wine pairing was perfect."</p>
+                        <div class="review-author">
+                            <img src="https://images.squarespace-cdn.com/content/v1/525c8c64e4b076bd2b761838/1630565817776-KD0BCIMU7UM5PN2PNUQ8/PV21_Emma+Davis.png"
+                                alt="Emma Davis" class="author-avatar">
+                            <div class="author-info">
+                                <h4>Emma Davis</h4>
+                                <span>Anniversary Celebration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Reservation -->
+    <section id="contact" class="contact section-padding">
+        <div class="container">
+            <div class="contact-content">
+                <div class="reservation-form animate-on-scroll" data-animation="fade-right">
+                    <h2 class="section-title">Make a Reservation</h2>
+                    <form id="reservation-form" class="form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            <span class="form-icon">👤</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                            <span class="form-icon">📧</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                            <span class="form-icon">📞</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                                <span class="form-icon">📅</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Select Time</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="17:30">5:30 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                                <span class="form-icon">🕐</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests" name="guests" required>
+                                <option value="">Select Guests</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5 Guests</option>
+                                <option value="6">6 Guests</option>
+                                <option value="7">7 Guests</option>
+                                <option value="8">8 Guests</option>
+                            </select>
+                            <span class="form-icon">👥</span>
+                        </div>
+
+                        <button type="submit" class="submit-btn ripple-effect">
+                            Reserve Table
+                        </button>
+                    </form>
+
+                    <div id="form-success" class="form-success">
+                        <h3>Reservation Confirmed!</h3>
+                        <p>Thank you for choosing Royal Taste. We look forward to serving you.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info animate-on-scroll" data-animation="fade-left">
+                    <h2 class="section-title">Contact Information</h2>
+
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>Address</h4>
+                            <p>123 Gourmet Street<br>Culinary District, CD 12345</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <p>info@royaltaste.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">🕐</div>
+                        <div class="info-content">
+                            <h4>Opening Hours</h4>
+                            <p>Monday - Thursday: 5:00 PM - 10:00 PM<br>
+                                Friday - Saturday: 5:00 PM - 11:00 PM<br>
+                                Sunday: 4:00 PM - 9:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Subscription -->
+                    <div class="newsletter">
+                        <h3>Stay Updated</h3>
+                        <p>Subscribe to our newsletter for special offers and events</p>
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">Subscribe</button>
+                        </form>
+                        <div id="newsletter-success" class="newsletter-success">
+                            Thanks for subscribing! 🎉
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Maps -->
+            <div class="map-container animate-on-scroll">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4078907.36320768!2d72.74350601249996!3d13.02664670000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f18!3m3!1m2!1s0x3bae17826762e67f%3A0xb5d5003222cd8174!2sRoyal%20Taste!5e1!3m2!1sen!2sin!4v1750438440548!5m2!1sen!2sin"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="Royal Taste Restaurant Location">
+                </iframe>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Royal Taste</h3>
+                    <p>Experience culinary excellence in an atmosphere of refined elegance.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>📍 123 Gourmet Street<br>Culinary District, CD 12345</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                    <p>📧 info@royaltaste.com</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Opening Hours</h4>
+                    <p>Monday - Thursday<br>5:00 PM - 10:00 PM</p>
+                    <p>Friday - Saturday<br>5:00 PM - 11:00 PM</p>
+                    <p>Sunday<br>4:00 PM - 9:00 PM</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Royal Taste. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+        ↑
+    </button>
+
+    <script>
+        // DOM Content Loaded Event
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initialize all functionality
+            initPreloader()
+            initNavigation()
+            initScrollAnimations()
+            initMenuFilters()
+            initCarousel()
+            initGallery()
+            initReviews()
+            initForms()
+            initScrollToTop()
+            initParallax()
+            initCounters()
+            updateCurrentYear()
+        })
+
+        // Preloader
+        function initPreloader() {
+            const preloader = document.getElementById("preloader")
+            const loadingProgress = document.querySelector(".loading-progress")
+
+            // Simulate loading progress
+            let progress = 0
+            const loadingInterval = setInterval(() => {
+                progress += Math.random() * 15
+                if (progress >= 100) {
+                    progress = 100
+                    clearInterval(loadingInterval)
+
+                    // Hide preloader after loading completes
+                    setTimeout(() => {
+                        preloader.classList.add("fade-out")
+                        setTimeout(() => {
+                            preloader.style.display = "none"
+                        }, 500)
+                    }, 500)
+                }
+                loadingProgress.style.width = progress + "%"
+            }, 100)
+        }
+
+        // Navigation
+        function initNavigation() {
+            const header = document.getElementById("header")
+            const hamburger = document.getElementById("hamburger")
+            const navMenu = document.getElementById("nav-menu")
+            const navLinks = document.querySelectorAll(".nav-link")
+
+            // Sticky header on scroll
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 100) {
+                    header.classList.add("scrolled")
+                } else {
+                    header.classList.remove("scrolled")
+                }
+            })
+
+            // Mobile menu toggle
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active")
+                navMenu.classList.toggle("active")
+            })
+
+            // Close mobile menu when clicking on links
+            navLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    hamburger.classList.remove("active")
+                    navMenu.classList.remove("active")
+                })
+            })
+
+            // Active navigation link
+            window.addEventListener("scroll", () => {
+                let current = ""
+                const sections = document.querySelectorAll("section")
+
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop
+                    const sectionHeight = section.clientHeight
+                    if (scrollY >= sectionTop - 200) {
+                        current = section.getAttribute("id")
+                    }
+                })
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("active")
+                    if (link.getAttribute("href") === "#" + current) {
+                        link.classList.add("active")
+                    }
+                })
+            })
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const animateElements = document.querySelectorAll(".animate-on-scroll")
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("animate")
+                        }
+                    })
+                },
+                {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px",
+                },
+            )
+
+            animateElements.forEach((element) => {
+                observer.observe(element)
+            })
+        }
+
+        // Menu Filters
+        function initMenuFilters() {
+            const filterButtons = document.querySelectorAll(".filter-btn")
+            const menuItems = document.querySelectorAll(".menu-item")
+
+            filterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach((btn) => btn.classList.remove("active"))
+                    // Add active class to clicked button
+                    button.classList.add("active")
+
+                    const filterValue = button.getAttribute("data-filter")
+
+                    menuItems.forEach((item) => {
+                        if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
+                            item.classList.remove("hidden")
+                            setTimeout(() => {
+                                item.style.display = "block"
+                            }, 10)
+                        } else {
+                            item.classList.add("hidden")
+                            setTimeout(() => {
+                                if (item.classList.contains("hidden")) {
+                                    item.style.display = "none"
+                                }
+                            }, 300)
+                        }
+                    })
+                })
+            })
+        }
+
+        // Carousel
+        function initCarousel() {
+            const track = document.getElementById("carousel-track")
+            const prevBtn = document.getElementById("prev-btn")
+            const nextBtn = document.getElementById("next-btn")
+            const cards = document.querySelectorAll(".special-card")
+
+            let currentIndex = 0
+            const isAutoPlaying = true
+            let autoPlayInterval
+
+            function updateCarousel() {
+                const translateX = -currentIndex * 100
+                track.style.transform = `translateX(${translateX}%)`
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % cards.length
+                updateCarousel()
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length
+                updateCarousel()
+            }
+
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(nextSlide, 4000)
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval)
+            }
+
+            // Event listeners
+            nextBtn.addEventListener("click", () => {
+                nextSlide()
+                stopAutoPlay()
+                setTimeout(startAutoPlay, 5000)
+            })
+
+            prevBtn.addEventListener("click", () => {
+                prevSlide()
+                stopAutoPlay()
+                setTimeout(startAutoPlay, 5000)
+            })
+
+            // Touch/swipe support
+            let startX = 0
+            let endX = 0
+
+            track.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX
+                stopAutoPlay()
+            })
+
+            track.addEventListener("touchend", (e) => {
+                endX = e.changedTouches[0].clientX
+                const diff = startX - endX
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        nextSlide()
+                    } else {
+                        prevSlide()
+                    }
+                }
+
+                setTimeout(startAutoPlay, 5000)
+            })
+
+            // Start autoplay
+            startAutoPlay()
+
+            // Pause on hover
+            const carousel = document.querySelector(".specials-carousel")
+            carousel.addEventListener("mouseenter", stopAutoPlay)
+            carousel.addEventListener("mouseleave", startAutoPlay)
+        }
+
+        // Gallery and Lightbox
+        function initGallery() {
+            const galleryItems = document.querySelectorAll(".gallery-item")
+            const lightbox = document.getElementById("lightbox")
+            const lightboxImage = document.getElementById("lightbox-image")
+            const lightboxClose = document.querySelector(".lightbox-close")
+            const lightboxPrev = document.getElementById("lightbox-prev")
+            const lightboxNext = document.getElementById("lightbox-next")
+
+            let currentImageIndex = 0
+            const images = Array.from(galleryItems).map((item) => item.getAttribute("data-src"))
+
+            function openLightbox(index) {
+                currentImageIndex = index
+                lightboxImage.src = images[index]
+                lightbox.classList.add("active")
+                document.body.style.overflow = "hidden"
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("active")
+                document.body.style.overflow = "auto"
+            }
+
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % images.length
+                lightboxImage.src = images[currentImageIndex]
+            }
+
+            function showPrevImage() {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length
+                lightboxImage.src = images[currentImageIndex]
+            }
+
+            // Event listeners
+            galleryItems.forEach((item, index) => {
+                item.addEventListener("click", () => openLightbox(index))
+            })
+
+            lightboxClose.addEventListener("click", closeLightbox)
+            lightboxNext.addEventListener("click", showNextImage)
+            lightboxPrev.addEventListener("click", showPrevImage)
+
+            // Close lightbox when clicking outside image
+            lightbox.addEventListener("click", (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox()
+                }
+            })
+
+            // Keyboard navigation
+            document.addEventListener("keydown", (e) => {
+                if (lightbox.classList.contains("active")) {
+                    switch (e.key) {
+                        case "Escape":
+                            closeLightbox()
+                            break
+                        case "ArrowLeft":
+                            showPrevImage()
+                            break
+                        case "ArrowRight":
+                            showNextImage()
+                            break
+                    }
+                }
+            })
+        }
+
+        // Reviews Slider
+        function initReviews() {
+            const reviewCards = document.querySelectorAll(".review-card")
+            const indicators = document.querySelectorAll(".indicator")
+
+            let currentReview = 0
+            let reviewInterval
+
+            function showReview(index) {
+                reviewCards.forEach((card) => card.classList.remove("active"))
+                indicators.forEach((indicator) => indicator.classList.remove("active"))
+
+                reviewCards[index].classList.add("active")
+                indicators[index].classList.add("active")
+                currentReview = index
+            }
+
+            function nextReview() {
+                const next = (currentReview + 1) % reviewCards.length
+                showReview(next)
+            }
+
+            function startReviewAutoPlay() {
+                reviewInterval = setInterval(nextReview, 5000)
+            }
+
+            function stopReviewAutoPlay() {
+                clearInterval(reviewInterval)
+            }
+
+            // Indicator click events
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener("click", () => {
+                    showReview(index)
+                    stopReviewAutoPlay()
+                    setTimeout(startReviewAutoPlay, 7000)
+                })
+            })
+
+            // Start autoplay
+            startReviewAutoPlay()
+
+            // Pause on hover
+            const reviewsSection = document.querySelector(".reviews-slider")
+            reviewsSection.addEventListener("mouseenter", stopReviewAutoPlay)
+            reviewsSection.addEventListener("mouseleave", startReviewAutoPlay)
+        }
+
+        // Forms
+        function initForms() {
+            const reservationForm = document.getElementById("reservation-form")
+            const newsletterForm = document.getElementById("newsletter-form")
+            const formSuccess = document.getElementById("form-success")
+            const newsletterSuccess = document.getElementById("newsletter-success")
+
+            // Reservation form validation and submission
+            reservationForm.addEventListener("submit", (e) => {
+                e.preventDefault()
+
+                const formData = new FormData(reservationForm)
+                const name = formData.get("name")
+                const email = formData.get("email")
+                const phone = formData.get("phone")
+                const date = formData.get("date")
+                const time = formData.get("time")
+                const guests = formData.get("guests")
+
+                // Basic validation
+                if (!name || !email || !phone || !date || !time || !guests) {
+                    alert("Please fill in all required fields.")
+                    return
+                }
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                if (!emailRegex.test(email)) {
+                    alert("Please enter a valid email address.")
+                    return
+                }
+
+                // Phone validation
+                const phoneRegex = /^[+]?[1-9][\d]{0,15}$/
+                if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
+                    alert("Please enter a valid phone number.")
+                    return
+                }
+
+                // Date validation (must be future date)
+                const selectedDate = new Date(date)
+                const today = new Date()
+                today.setHours(0, 0, 0, 0)
+
+                if (selectedDate < today) {
+                    alert("Please select a future date.")
+                    return
+                }
+
+                // Simulate form submission
+                setTimeout(() => {
+                    reservationForm.style.display = "none"
+                    formSuccess.classList.add("show")
+
+                    // Reset form after 5 seconds
+                    setTimeout(() => {
+                        reservationForm.style.display = "block"
+                        formSuccess.classList.remove("show")
+                        reservationForm.reset()
+                    }, 5000)
+                }, 1000)
+            })
+
+            // Newsletter form
+            newsletterForm.addEventListener("submit", (e) => {
+                e.preventDefault()
+
+                const email = document.getElementById("newsletter-email").value
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+                if (!emailRegex.test(email)) {
+                    alert("Please enter a valid email address.")
+                    return
+                }
+
+                // Simulate subscription
+                newsletterSuccess.classList.add("show")
+                newsletterForm.reset()
+
+                setTimeout(() => {
+                    newsletterSuccess.classList.remove("show")
+                }, 3000)
+            })
+
+            // Floating labels effect
+            const formInputs = document.querySelectorAll(".form-group input, .form-group select")
+            formInputs.forEach((input) => {
+                input.addEventListener("focus", () => {
+                    input.parentElement.classList.add("focused")
+                })
+
+                input.addEventListener("blur", () => {
+                    if (!input.value) {
+                        input.parentElement.classList.remove("focused")
+                    }
+                })
+            })
+        }
+
+        // Scroll to Top Button
+        function initScrollToTop() {
+            const scrollToTopBtn = document.getElementById("scroll-to-top")
+
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add("show")
+                } else {
+                    scrollToTopBtn.classList.remove("show")
+                }
+            })
+
+            scrollToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                })
+            })
+        }
+
+        // Parallax Effect
+        function initParallax() {
+            const heroBackground = document.querySelector(".hero-background")
+
+            window.addEventListener("scroll", () => {
+                const scrolled = window.pageYOffset
+                const rate = scrolled * -0.5
+
+                if (heroBackground) {
+                    heroBackground.style.transform = `translateY(${rate}px)`
+                }
+            })
+        }
+
+        // Animated Counters
+        function initCounters() {
+            const counters = document.querySelectorAll(".stat-number")
+            const speed = 200
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target
+                        const target = Number.parseInt(counter.getAttribute("data-target"))
+                        const increment = target / speed
+                        let current = 0
+
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment
+                                counter.textContent = Math.ceil(current)
+                                setTimeout(updateCounter, 1)
+                            } else {
+                                counter.textContent = target
+                            }
+                        }
+
+                        updateCounter()
+                        observer.unobserve(counter)
+                    }
+                })
+            })
+
+            counters.forEach((counter) => {
+                observer.observe(counter)
+            })
+        }
+
+        // Update Current Year
+        function updateCurrentYear() {
+            const currentYearElement = document.getElementById("current-year")
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear()
+            }
+        }
+
+        // Smooth Scroll to Section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId)
+            if (section) {
+                const headerHeight = document.getElementById("header").offsetHeight
+                const sectionTop = section.offsetTop - headerHeight
+
+                window.scrollTo({
+                    top: sectionTop,
+                    behavior: "smooth",
+                })
+            }
+        }
+
+        // Ripple Effect for Buttons
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("ripple-effect")) {
+                const button = e.target
+                const rect = button.getBoundingClientRect()
+                const size = Math.max(rect.width, rect.height)
+                const x = e.clientX - rect.left - size / 2
+                const y = e.clientY - rect.top - size / 2
+
+                const ripple = document.createElement("span")
+                ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            left: ${x}px;
+            top: ${y}px;
+            width: ${size}px;
+            height: ${size}px;
+        `
+
+                button.appendChild(ripple)
+
+                setTimeout(() => {
+                    ripple.remove()
+                }, 600)
+            }
+        })
+
+        // Add ripple animation keyframes
+        const style = document.createElement("style")
+        style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`
+        document.head.appendChild(style)
+
+        // Lazy Loading Images
+        function initLazyLoading() {
+            const images = document.querySelectorAll('img[loading="lazy"]')
+
+            if ("IntersectionObserver" in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target
+                            img.src = img.src
+                            img.classList.remove("lazy")
+                            imageObserver.unobserve(img)
+                        }
+                    })
+                })
+
+                images.forEach((img) => {
+                    imageObserver.observe(img)
+                })
+            }
+        }
+
+        // Initialize lazy loading
+        initLazyLoading()
+
+        // Performance optimization: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout)
+                    func(...args)
+                }
+                clearTimeout(timeout)
+                timeout = setTimeout(later, wait)
+            }
+        }
+
+        // Apply debouncing to scroll-heavy functions
+        const debouncedParallax = debounce(initParallax, 10)
+        window.addEventListener("scroll", debouncedParallax)
+
+        // Accessibility improvements
+        document.addEventListener("keydown", (e) => {
+            // Skip to main content with Tab key
+            if (e.key === "Tab" && !e.shiftKey) {
+                const focusableElements = document.querySelectorAll(
+                    'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+                )
+
+                // Add focus indicators for keyboard navigation
+                focusableElements.forEach((element) => {
+                    element.addEventListener("focus", () => {
+                        element.style.outline = "2px solid var(--primary-color)"
+                    })
+
+                    element.addEventListener("blur", () => {
+                        element.style.outline = "none"
+                    })
+                })
+            }
+        })
+
+        // Error handling for images
+        document.querySelectorAll("img").forEach((img) => {
+            img.addEventListener("error", function () {
+                this.src = "/placeholder.svg?height=400&width=600&text=Image+Not+Found"
+                this.alt = "Image not available"
+            })
+        })
+
+        // Console welcome message
+        console.log("%c🍽️ Welcome to Royal Taste Restaurant! 🍽️", "color: #d4af37; font-size: 20px; font-weight: bold;")
+        console.log("%cBuilt with vanilla HTML, CSS, and JavaScript", "color: #ccc; font-size: 14px;")
+
+    </script>
+</body>
+
+</html>
